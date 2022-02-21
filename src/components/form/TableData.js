@@ -2,14 +2,24 @@ import { useRef, useState } from "react";
 import { Table, Button, FormControl } from "react-bootstrap";
 function TableData() {
   const [noOfRows, setNoOfRows] = useState(1);
+  const [tableData, setTableData] = useState({
+    tableText : "",
+  })
   
 
   const currentRef = useRef([]);
 
+  const handleChange = (e) =>{
+   setTableData({
+     ...tableData,
+    [e.target.name] : e.target.value
+   })
+
+  }
   return (
     <>
       <Table className="m-3 ">
-        <thead className="text-center">
+        <thead className="text-center"> 
           <tr>
             <th>SN</th>
             <th>Text</th>
@@ -26,7 +36,7 @@ function TableData() {
                 <td>{index + 1}</td>
 
                 <td>
-                  <FormControl type="text" name="text" />    
+                  <FormControl type="text" name="tableText" onChange={handleChange} />    
                 </td>
                 <td className="d-flex justify-content-center">
                   <Button
