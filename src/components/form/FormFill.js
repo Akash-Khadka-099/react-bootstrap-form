@@ -10,43 +10,40 @@ import {
   Button,
 } from "react-bootstrap";
 
-export default function FormFill() {
-  const[formData, setFormData] = useState({
-    username : "",
-    class : "",
-    universityName : "",
-    fatherName : "",
-    motherName : "",
-    dob : "",
-    temAdd : "",
-    perAdd : "",
-    email : "",
-    ecoCondition : "",
-    bloodGroup : "",
-    image : ""
+export default function FormFill({submit}) {
 
-  })
+  // const handleChange= (e)=>{
+  //   setFormData({
+  //     ...formData,
+  //     [e.target.name] : e.target.value
+  //   })
 
-  const handleChange= (e)=>{
-    setFormData({
-      ...formData,
-      [e.target.name] : e.target.value
-    })
-
-  }
+  // }
 
   const submitHandler = (e) => {
     e.preventDefault();
+    const data = {
+      username: e.target.username.value,
+      class: e.target.class.value,
+      universityName: e.target.universityName.value,
+      fatherName: e.target.fatherName.value,
+      motherName: e.target.motherName.value,
+      dob: e.target.motherName.value,
+      temAdd: e.target.temAdd.value,
+      perAdd: e.target.perAdd.value,
+      email: e.target.email.value,
+      // ecoCondition: e.target.ecoCondition.value,
+      bloodGroup: e.target.bloodGroup.value,
+      image: e.target.image.value,
+    }
 
-    console.log("submit button clicked");
-    console.log(formData)
-    
+    submit(data) 
   };
 
 
   return (
     <>
-      <Form>
+      <Form onSubmit={submitHandler}>
         <FormGroup as={Row}>
           <Col sm={9}> 
           <FormGroup as={Row} className="mb-2">
@@ -54,7 +51,7 @@ export default function FormFill() {
                 Name
               </FormLabel>
               <Col sm={9}>
-                <FormControl onChange={handleChange} type="select" name="username" />
+                <FormControl type="select" name="username" />
               </Col>
             </FormGroup>
             <FormGroup as={Row} className="mb-2">
@@ -62,7 +59,7 @@ export default function FormFill() {
                 Class
               </FormLabel>
               <Col sm={9}>
-                <FormControl onChange={handleChange} type="select" name="class" />
+                <FormControl  type="select" name="class" />
               </Col>
             </FormGroup>
             <FormGroup as={Row} className="mb-2">
@@ -70,7 +67,7 @@ export default function FormFill() {
                 University Name
               </FormLabel>
               <Col sm={9}>
-                <FormControl onChange={handleChange} type="text" name="universityName" />
+                <FormControl  type="text" name="universityName" />
               </Col>
             </FormGroup>
             <FormGroup as={Row} className="mb-2">
@@ -78,7 +75,7 @@ export default function FormFill() {
                 Father's Name
               </FormLabel>
               <Col sm={9}>
-                <FormControl onChange={handleChange} type="text" name="fatherName" />
+                <FormControl  type="text" name="fatherName" />
               </Col>
             </FormGroup>
             <FormGroup as={Row} className="mb-2">
@@ -86,7 +83,7 @@ export default function FormFill() {
                 Mother's Name
               </FormLabel>
               <Col sm={9}>
-                <FormControl onChange={handleChange} type="text" name="motherName"  />
+                <FormControl  type="text" name="motherName"  />
               </Col>
             </FormGroup>
             <FormGroup as={Row} className="mb-2">
@@ -94,18 +91,18 @@ export default function FormFill() {
                 Date of Birth
               </FormLabel>
               <Col sm={5}>
-                <FormControl onChange={handleChange} type="date" name="dob" />
+                <FormControl  type="date" name="dob" />
               </Col>
             </FormGroup>
 
             <FormGroup as={Row} className="my-5">
               <Col sm={6}>
                 <FormLabel className="text-center" htmlFor="temAdd">Temporary address</FormLabel>
-                <FormControl onChange={handleChange} type="text" name="temAdd" />
+                <FormControl  type="text" name="temAdd" />
               </Col>
               <Col sm={6}>
                 <FormLabel htmlFor="perAdd">Permanent address</FormLabel>
-                <FormControl onChange={handleChange} type="text" name="perAdd" />
+                <FormControl  type="text" name="perAdd" />
               </Col>
             </FormGroup>
 
@@ -114,7 +111,7 @@ export default function FormFill() {
                 Email
               </FormLabel>
               <Col sm={9}>
-                <FormControl onChange={handleChange} type="email" name="email" />
+                <FormControl  type="email" name="email" />
               </Col>
             </FormGroup>
 
@@ -123,8 +120,8 @@ export default function FormFill() {
                 Do you belong to Economically poor section ?
               </FormLabel>
               <Col sm={5}>
-                <FormCheck onChange={handleChange} inline type="radio" name="condition" label="yes" value="yes" />
-                <FormCheck onChange={handleChange} inline type="radio" name="condition" label="no" value="no" />
+                <FormCheck  inline type="radio" name="condition" label="yes" value="yes" />
+                <FormCheck  inline type="radio" name="condition" label="no" value="no" />
               </Col>
             </FormGroup>
 
@@ -133,17 +130,17 @@ export default function FormFill() {
                 Blood group
               </FormLabel>
               <Col sm={2}>
-                <FormControl onChange={handleChange} type="text" name="bloodGroup" />
+                <FormControl  type="text" name="bloodGroup" />
               </Col>
             </FormGroup>
           </Col> 
           <Col sm={3}>
-            <FormControl onChange={handleChange} type="image" name="image"  />
+            <FormControl  type="file" name="image"  />
           </Col>
         </FormGroup>
 
         <FormGroup className="d-flex justify-content-center mt-3">
-          <Button type="submit" onClick={submitHandler}>
+          <Button type="submit">
             Submit
           </Button>
         </FormGroup>
